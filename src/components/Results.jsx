@@ -1,9 +1,15 @@
-import { calculateInvestmentResults, formatter } from '../util/investment.js';
-
+import { calculateInvestmentResults, formatter } from "../util/investment.js";
 
 export default function Results({ input }) {
   const results = [];
   calculateInvestmentResults(input, results);
+
+  // If you try to use the value '0' for duration the code will break. But with this check it wouldn't
+
+  if (results.length === 0) {
+    return <p className="center">Invalid input.</p>;
+  }
+
   const initialInvestment =
     results[0].valueEndOfYear -
     results[0].interest -
